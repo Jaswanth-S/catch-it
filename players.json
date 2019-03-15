@@ -1,0 +1,56 @@
+{
+  "players": [
+    {
+      "id": 1,
+      "name": "jaswanth",
+      "score": "40"
+    },
+    {
+      "id":2,
+      "name":"sandy",
+      "score":"35"
+    },
+    {
+      "id":3,
+      "name":"ram",
+      "score":"44"
+    },
+    {
+      "id":4,
+      "name":"john",
+      "score":"24"
+    },
+    {
+      "id":5,
+      "name":"ravi",
+      "score":"15"
+    },
+    {
+      "id":6,
+      "name":"abcd",
+      "score":"32"
+    },
+    {
+      "id":7,
+      "name":"xyz",
+      "score":"37"
+    },
+    {
+      "id":8,
+      "name":"xavier",
+      "score":"12"
+    },
+    {
+      "id":9,
+      "name":"sunny",
+      "score":"22"
+    },
+    {
+      "id":10,
+      "name":"jacky",
+      "score":"4"
+    }
+
+  ]
+  
+}
