@@ -8,12 +8,14 @@ import {Link} from 'react-router-dom';
       this.state = {
         food: [],
         snake: [],
+        players:[],
         // 0 = not started, 1 = in progress, 2= finished
         status: 0,
         // using keycodes to indicate direction
         direction: 39
       };
-  
+        console.log(this.props.newPlayer);
+
       this.moveFood = this.moveFood.bind(this);
       this.checkIfAteFood = this.checkIfAteFood.bind(this);
       this.startGame = this.startGame.bind(this);
@@ -144,6 +146,7 @@ import {Link} from 'react-router-dom';
   
       this.setState({
         status: 1,
+      
         snake: [[5, 5]],
         food: [10, 10]
       });
@@ -154,13 +157,29 @@ import {Link} from 'react-router-dom';
     endGame(){
       this.removeTimers();
       this.setState({
-        status : 2
+        status : 2,
+        players: [...this.state.players, {
+             name: this.props.newPlayer,
+              score:this.state.snake.length
+             }]
+      })
+
+      console.log(this.state.players);
+      fetch('http://localhost:4000/players',
+      {
+          method: 'POST',
+          body: JSON.stringify(this.state.players[this.state.players.length-1]),
+          headers: {
+              'Content-Type': 'application/json'
+          }
       })
     }
   
     removeTimers() {
-      if (this.moveSnakeInterval) clearInterval(this.moveSnakeInterval);
-      if (this.moveFoodTimeout) clearTimeout(this.moveFoodTimeout)
+      if (this.moveSnakeInterval) 
+            clearInterval(this.moveSnakeInterval);
+      if (this.moveFoodTimeout) 
+            clearTimeout(this.moveFoodTimeout)
     }
   
     componentWillUnmount() {

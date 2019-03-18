@@ -12,11 +12,11 @@ class App extends Component {
     super();
     this.state = {
       newPlayer: '',
-      Players: [{
-        name: '',
-        done: false,
-        score:'0'
-      }],
+      // Players: [{
+      //   name: '',
+      //   done: false,
+      //   score:'0'
+      // }],
     }
   }
   
@@ -29,14 +29,14 @@ class App extends Component {
   formSubmitted(event) {
     event.preventDefault();
 
-    this.setState({
-      Players: [...this.state.Players, {
-        name: this.state.newPlayer,
-        done: true,
-        score:'0'
-      }]
-    }
-    );
+    // this.setState({
+    //   Players: [...this.state.Players, {
+    //     name: this.state.newPlayer,
+    //     done: true,
+    //     score:'0'
+    //   }]
+    // }
+    // );
   }
   
    
@@ -66,7 +66,7 @@ class App extends Component {
        }/>
 
     <Route path="/game-play" render={ props =>
-      <GameComponent  size={400}/>
+      <GameComponent  newPlayer={this.state.newPlayer} size={400}/>
        }/>
         <Route path="/leaderboard" render={ props =>
       <LeaderboardComponent/>

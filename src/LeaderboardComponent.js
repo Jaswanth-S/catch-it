@@ -1,73 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
+//import {UID} from 'react-uid';
+class LeaderboardComponent extends Component {
+  constructor(props) {
+    super(props);
 
-function LeaderboardComponent()
-{
+    this.state = {
+      players:[],
+      rank:0
+    };
+  }
+  
 
-      return(
-        <div>
-    
-            <table className=" table-dark table-striped" style={{width:'100%'}}>
+async componentDidMount(){
+    const players = await (await fetch("http://localhost:4000/players?_sort=score&_order=desc")).json()
+    this.setState({players})
+    //console.log(this.state.players);
+  }
+  render()
+  {
+      return (<div>
+                    <table className=" table-dark table-striped" style={{width:'100%'}}>
             <thead>
-                 <tr>
+                  <tr>
                      <th>Rank</th>
                      <th>Name</th>
-                     <th>Score</th>
-                </tr>
-              </thead>
+                     <th>Score</th>              
+                  </tr>
+               </thead>
               <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>stackroute</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>React</td>
-                        <td>46</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>sai</td>
-                        <td>42</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>jaswanth</td>
-                        <td>34</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>ram</td>
-                        <td>33</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>abcdefgh</td>
-                        <td>30</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>lklkl</td>
-                        <td>26</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>jdfkjgd</td>
-                        <td>24</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>xyzxyz</td>
-                        <td>14</td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>gafgsfaghds</td>
-                        <td>6</td>
-                    </tr>
+              { 
+                  this.state.players.map((elem,index) => (
+                  <Tr rank ={index+1 } elem={elem} />   
+                 ))
+             }
             </tbody>
             </table>
-        </div>
-      )
-   }
+      </div>)
+  }
+}
+function Tr(props)
+ {
+   
+    return (
+        <tr key={props.elem.id}>
+            <td>{props.rank}</td>
+            <td>{props.elem.name}</td>
+            <td>{props.elem.score}</td>
+        </tr>
+    )
+ }
 export default LeaderboardComponent;
+
+

@@ -20,5 +20,6 @@ const StartComponent = (props) => {
       </div>
       </div>
     )
+  
   }
 export default StartComponent; 
